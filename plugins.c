@@ -1519,12 +1519,21 @@ plug_is_relative_path (const char *fname) {
     // path starts with a '/'?
     if (*fname != '/') {
 #else
-    // path starts with a disk drive?
-    if (strlen (fname) < 3
-        || !isalpha(fname[0])
-        || fname[1] != ':'
-        || !(fname[2] == '\\' || fname[2] == '//')
-        || !(fname[3] != '\\' && fname[3] != '//')) {
+    // absolute paths start with "C:\" (or any other letter)
+    // ignore UNC paths (starting with "\\")
+    // NOTE: this test won't cover \\? relative path and absolute path starting with "\"
+    if (strlen (fname) > 3) {
+        if (isalpha(fname[0]) && fname[1] == ':' && (fname[2] == '\\' || fname[2] == '/')) {
+            return 0;
+        }
+        else if (fname[0] == '\\' && fname[1] == '\\') {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+
+    return 0;
 #endif
         return 1;
     }
