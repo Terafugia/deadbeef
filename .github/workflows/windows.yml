@@ -24,7 +24,7 @@ jobs:
      - name: Download premake5
        run: msys2do wget https://github.com/premake/premake-core/releases/download/v5.0.0-alpha14/premake-5.0.0-alpha14-windows.zip && unzip premake-5.0.0-alpha14-windows.zip
      - name: Run premake5
-       run: msys2do premake5 --os=linux --file=premake5-win.lua --standard gmake
+       run: msys2do ./premake5 --os=linux --file=premake5-win.lua --standard gmake
      - name: Build deadbeef
        run: msys2do make config=release_windows
      - name: Build deadbeef with debugging symbols
