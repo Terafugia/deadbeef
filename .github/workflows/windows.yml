@@ -18,20 +18,11 @@ jobs:
      - name: Synchronize package databases
        run: msys2do pacman -Syy --noconfirm
      - name: Install necessary packages
-       run: msys2do pacman -S --noconfirm $PACKAGES
-       env:
-        PACKAGES: mingw-w64-x86_64-libzip mingw-w64-x86_64-pkg-config mingw-w64-x86_64-dlfcn mingw-w64-x86_64-gcc git make tar unzip xz
+       run: msys2do pacman -S --noconfirm mingw-w64-x86_64-libzip mingw-w64-x86_64-pkg-config mingw-w64-x86_64-dlfcn mingw-w64-x86_64-gcc git make tar unzip xz
      - name: Install plugin dependencies
-       run: msys2do pacman -S --noconfirm $PACKAGES1 $PACKAGES2 $PACKAGES3
-       env:
-        PACKAGES1: mingw-w64-x86_64-jansson mingw-w64-x86_64-gtk3 mingw-w64-x86_64-gtk2 mingw-w64-x86_64-mpg123 mingw-w64-x86_64-flac mingw-w64-x86_64-curl
-        PACKAGES2: mingw-w64-x86_64-portaudio mingw-w64-x86_64-faad2 mingw-w64-x86_64-flac mingw-w64-x86_64-wavpack mingw-w64-x86_64-libvorbis
-        PACKAGES3: mingw-w64-x86_64-libogg mingw-w64-x86_64-opusfile mingw-w64-x86_64-opus mingw-w64-x86_64-libsndfile mingw-w64-x86_64-libsamplerate 
+       run: msys2do pacman -S --noconfirm mingw-w64-x86_64-jansson mingw-w64-x86_64-gtk3 mingw-w64-x86_64-gtk2 mingw-w64-x86_64-mpg123 mingw-w64-x86_64-flac mingw-w64-x86_64-curl mingw-w64-x86_64-portaudio mingw-w64-x86_64-faad2 mingw-w64-x86_64-flac mingw-w64-x86_64-wavpack mingw-w64-x86_64-libvorbis mingw-w64-x86_64-libogg mingw-w64-x86_64-opusfile mingw-w64-x86_64-opus mingw-w64-x86_64-libsndfile mingw-w64-x86_64-libsamplerate
      - name: Download premake5
-       run: msys2do wget $PREMAKE_URL && unzip $PREMAKE_FILE
-       env:
-        PREMAKE_FILE: premake-5.0.0-alpha14-windows.zip
-        PREMAKE_URL: https://github.com/premake/premake-core/releases/download/v5.0.0-alpha14/premake-5.0.0-alpha14-windows.zip
+       run: msys2do wget https://github.com/premake/premake-core/releases/download/v5.0.0-alpha14/premake-5.0.0-alpha14-windows.zip && unzip premake-5.0.0-alpha14-windows.zip
      - name: Run premake5
        run: msys2do premake5 --os=linux --file=premake5-win.lua --standard gmake
      - name: Build deadbeef
