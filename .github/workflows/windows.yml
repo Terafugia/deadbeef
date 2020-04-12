@@ -22,7 +22,7 @@ jobs:
      - name: Install plugin dependencies
        run: msys2do pacman -S --noconfirm mingw-w64-x86_64-jansson mingw-w64-x86_64-gtk3 mingw-w64-x86_64-gtk2 mingw-w64-x86_64-mpg123 mingw-w64-x86_64-flac mingw-w64-x86_64-curl mingw-w64-x86_64-portaudio mingw-w64-x86_64-faad2 mingw-w64-x86_64-flac mingw-w64-x86_64-wavpack mingw-w64-x86_64-libvorbis mingw-w64-x86_64-libogg mingw-w64-x86_64-opusfile mingw-w64-x86_64-opus mingw-w64-x86_64-libsndfile mingw-w64-x86_64-libsamplerate
      - name: Prepare themes and icons
-       run: msys2do git clone https://github.com/kuba160/Windows-10.git ; git clone https://github.com/kuba160/Windows-10-Icons.git ; rm -rv Windows-10/.git ; rm -rv Windows-10-Icons/.git
+       run: msys2do git clone https://github.com/kuba160/Windows-10.git && git clone https://github.com/kuba160/Windows-10-Icons.git
      - name: Download premake5
        run: msys2do wget https://github.com/premake/premake-core/releases/download/v5.0.0-alpha14/premake-5.0.0-alpha14-windows.zip && unzip premake-5.0.0-alpha14-windows.zip
      - name: Run premake5
