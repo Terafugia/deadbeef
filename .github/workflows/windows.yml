@@ -29,8 +29,8 @@ jobs:
        run: msys2do ./premake5 --os=linux --file=premake5-win.lua --standard gmake
      - name: Build deadbeef
        run: msys2do make config=release_windows
-     #- name: Build deadbeef with debugging symbols
-     #  run: msys2do make config=debug_windows
+     - name: Build deadbeef with debugging symbols
+       run: msys2do make config=debug_windows
      - name: Install theme and icons
        run: msys2do rm -rv Windows-10/.git ; rm -rv Windows-10-Icons/.git ; cp -r Windows-10 bin/debug/share/themes ; cp -r Windows-10 bin/release/share/themes ; cp -r Windows-10-Icons bin/debug/share/icons ; cp -r Windows-10-Icons bin/release/share/icons
      - name: Upload artifact windows-${{ steps.vars.outputs.sha_short }}.zip
